@@ -3,6 +3,11 @@ plugins {
     id 'kotlin-android'
 }
 
+// Load keystore
+def keystorePropertiesFile = rootProject.file("keystore.properties");
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     compileSdk 31
 
@@ -16,20 +21,43 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-//    signingConfigs {
-//        release {
-//            storePassword keystoreProperties['storePassword']
-//            storeFile file(keystoreProperties['storeFile'])
-//            keyPassword keystoreProperties['storePassword']
-//            keyAlias keystoreProperties['keyAlias']
-//        }
-////        debug {
-////            storePassword keystoreProperties['storePassword']
-////            storeFile file(keystoreProperties['storeFile'])
-////            keyPassword keystoreProperties['storePassword']
-////            keyAlias keystoreProperties['keyAlias']
-////        }
-//    }
+    signingConfigs {
+        release {
+            storePassword keystoreProperties['storePassword']
+            storeFile file(keystoreProperties['storeFile'])
+            keyPassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+        }
+        debug {
+            storePassword keystoreProperties['storePassword']
+            storeFile file(keystoreProperties['storeFile'])
+            keyPassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            ext.alwaysUpdateBuildId = false
+            debuggable true
+            testCoverageEnabled true
+
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+//            debuggable false
+//            shrinkResources false
+//            minifyEnabled false
+//            useProguard false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
 
     buildTypes {
         release {
