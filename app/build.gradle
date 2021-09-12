@@ -16,6 +16,21 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+//    signingConfigs {
+//        release {
+//            storePassword keystoreProperties['storePassword']
+//            storeFile file(keystoreProperties['storeFile'])
+//            keyPassword keystoreProperties['storePassword']
+//            keyAlias keystoreProperties['keyAlias']
+//        }
+////        debug {
+////            storePassword keystoreProperties['storePassword']
+////            storeFile file(keystoreProperties['storeFile'])
+////            keyPassword keystoreProperties['storePassword']
+////            keyAlias keystoreProperties['keyAlias']
+////        }
+//    }
+
     buildTypes {
         release {
             minifyEnabled false
