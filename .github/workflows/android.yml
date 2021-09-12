@@ -21,7 +21,19 @@ jobs:
           java-version: 11
       - name: Build debug APK
         run: |
-          bash ./gradlew assembleDebug --stacktrace
+          echo "${{ secrets.KEYSTORE }}" > alvareztech.jks.asc
+          gpg -d --passphrase "${{ secrets.KEYSTORE_PASSPHRASE }}" --batch alvareztech.jks.asc > app/alvareztech.jks
+          echo "${{ secrets.KEYSTORE_PROPERTIES }}" > keystore.properties.asc
+          gpg -d --passphrase "${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}" --batch keystore.properties.asc > keystore.properties
+          - name: Build with Gradle
+          run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease
+          - name: Publish APK
+          uses: actions/upload-artifact@v2
+          with:
+          name: app-release
+          path: app/build/outputs/apk/release/
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
