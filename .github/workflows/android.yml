@@ -21,8 +21,6 @@ jobs:
           java-version: 1.8
       - name: Build debug APK
         run: |
-          echo "${{ secrets.RELEASE_KEY_STORE }}" > release.keystore.asc
-          gpg -d --passphrase "${{ secrets.RELEASE_KEY_STORE_PASSPHRASE }}" --batch release.keystore.asc > app/release.keystore.jks
           bash ./gradlew assembleDebug --stacktrace
       - name: Upload APK
         uses: actions/upload-artifact@v1
