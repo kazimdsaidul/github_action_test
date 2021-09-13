@@ -19,8 +19,8 @@ jobs:
         run: |
           echo "${{ secrets.KEYSTORE }}" > mykeystore.jks.asc
           gpg -d --passphrase "${{ secrets.KEYSTORE_PASSPHRASE }}" --batch mykeystore.jks.asc > app/mykeystore.jks
-          echo "${{ secrets.KEYSTORE_PROPERTIES }}" > keystore.properties.asc
-          gpg -d --passphrase "${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}" --batch keystore.properties.asc > keystore.properties
+#          echo "${{ secrets.KEYSTORE_PROPERTIES }}" > keystore.properties.asc
+#          gpg -d --passphrase "${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}" --batch keystore.properties.asc > keystore.properties
       - name: Build with Gradle
         run: |
           chmod +x gradlew
