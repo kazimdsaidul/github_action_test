@@ -37,6 +37,6 @@ jobs:
           # Slack channel where you want to notify
           SLACK_CHANNEL: "customer-apps-apk"
           SLACK_USERNAME: "Kazi MD. Saidul"
-          SLACK_MESSAGE: ${{ steps.ias.outputs.downloadUrl }}
+          SLACK_MESSAGE: $app
 
-          
+
