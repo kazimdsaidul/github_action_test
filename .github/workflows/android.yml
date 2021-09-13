@@ -10,26 +10,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: set up JDK 11
+      - name: "set up JDK 11"
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Prepare Secret Files
+      - name: "Prepare Secret Files"
         run: |
           echo "${{ secrets.KEYSTORE }}" > mykeystore.jks.asc
           gpg -d --passphrase "${{ secrets.KEYSTORE_PASSPHRASE }}" --batch mykeystore.jks.asc > app/mykeystore.jks
           echo "${{ secrets.KEYSTORE_PROPERTIES }}" > keystore.properties.asc
           gpg -d --passphrase "${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}" --batch keystore.properties.asc > keystore.properties
-      - name: Build with Gradle
+      - name: "Build with Gradle"
         run: |
           chmod +x gradlew
           ./gradlew assembleRelease
-      - name: Sharing on slack
-        uses: rtCamp/action-slack-notify@v2.1.0
-        env:
-        # Your slack webhook GitHub secret
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_CHANNEL: [ customer-apps-apk ]
-          SLACK_USERNAME: "Kazi MD. Saidul"
+      - env:
+          SLACK_CHANNEL:
+            - customer-apps-apk
+          SLACK_MESSAGE: "${{ steps.ias.outputs.downloadUrl }}"
           SLACK_TITLE: "Internal testing build"
-          SLACK_MESSAGE: ${{ steps.ias.outputs.downloadUrl }}
+          SLACK_USERNAME: "Kazi MD. Saidul"
+          SLACK_WEBHOOK: "${{ secrets.SLACK_WEBHOOK }}"
+        name: "Sharing on slack"
+        uses: rtCamp/action-slack-notify@v2.1.0
