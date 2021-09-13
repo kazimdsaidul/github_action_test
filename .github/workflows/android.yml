@@ -36,5 +36,5 @@ jobs:
           # Your slack webhook GitHub secret
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           # Slack channel where you want to notify
-          SLACK_CHANNEL: [ 'customer-apps-apk' ]
+          SLACK_CHANNEL: "customer-apps-apk"
           SLACK_USERNAME: "Kazi MD. Saidul"
