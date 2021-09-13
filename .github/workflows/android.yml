@@ -24,6 +24,8 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assembleRelease
+          - name: Upload APK
+                uses: actions/upload-artifact@v1
       - name: Sharing on slack
         uses: rtCamp/action-slack-notify@v2.1.0
         env:
@@ -33,4 +35,3 @@ jobs:
           SLACK_CHANNEL: "customer-apps-apk"
           SLACK_USERNAME: "Kazi MD. Saidul"
           SLACK_MESSAGE: ${{ steps.ias.outputs.downloadUrl }}
-          
