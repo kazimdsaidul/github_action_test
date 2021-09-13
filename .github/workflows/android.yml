@@ -21,13 +21,12 @@ jobs:
           echo "${{ secrets.KEYSTORE_PROPERTIES }}" > keystore.properties.asc
           gpg -d --passphrase "${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}" --batch keystore.properties.asc > keystore.properties
       - name: Build with Gradle
-        run: |
-          bash ./gradlew bundleRelease
-      #          - name: Upload APK
-      #               uses: actions/upload-artifact@v1
-      #               with:
-      #                 name: app
-      #                 path: app/build/outputs/apk/release/app-release.aab
+        run: ./gradlew bundleRelease
+      - name: Upload APK
+      uses: actions/upload-artifact@v1
+      with:
+        name: app
+        path: app/build/outputs/apk/release/app-release.aab
       - name: Sharing on slack
         uses: rtCamp/action-slack-notify@v2.1.0
         env:
