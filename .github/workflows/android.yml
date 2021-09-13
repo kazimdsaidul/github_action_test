@@ -23,18 +23,18 @@ jobs:
 
       - name: Build debug APK
         run: ./gradlew assemblerelease
-#        uses: actions/upload-artifact@v1
-#        with:
-#          name: app
-#          path: app/build/outputs/apk/debug/app-debug.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: app
+          path: app/build/outputs/apk/release/app-release.apk
 
-
-#      - name: Sharing on slack
-#        uses: rtCamp/action-slack-notify@v2.1.0
-#        env:
-#          # Your slack webhook GitHub secret
-#          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-#          # Slack channel where you want to notify
-#          SLACK_CHANNEL: "customer-apps-apk"
-#          SLACK_USERNAME: "Kazi MD. Saidul"
-#          SLACK_MESSAGE: ${{ steps.ias.outputs.downloadUrl }}
+      - name: Sharing on slack
+        uses: rtCamp/action-slack-notify@v2.1.0
+        env:
+          # Your slack webhook GitHub secret
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          # Slack channel where you want to notify
+          SLACK_CHANNEL: "customer-apps-apk"
+          SLACK_USERNAME: "Kazi MD. Saidul"
+          SLACK_MESSAGE: ${{ steps.ias.outputs.downloadUrl }}
