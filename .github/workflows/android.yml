@@ -22,7 +22,7 @@ jobs:
           gpg -d --passphrase "${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}" --batch keystore.properties.asc > keystore.properties
       - name: Build debug APK
         run: |
-          bash ./gradlew assemblerelease
+           bash ./gradlew assemblerelease
         uses: actions/upload-artifact@v1
         with:
           name: app
