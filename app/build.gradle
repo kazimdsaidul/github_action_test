@@ -27,6 +27,7 @@ android {
             storeFile file(keystoreProperties['storeFile'])
             keyPassword keystoreProperties['storePassword']
             keyAlias keystoreProperties['keyAlias']
+            v2SigningEnabled true
         }
         debug {
             storePassword keystoreProperties['storePassword']
