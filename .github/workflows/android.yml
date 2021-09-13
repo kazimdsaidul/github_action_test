@@ -24,12 +24,6 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assembleRelease
-          - name: Upload APK
-                uses: actions/upload-artifact@v1
-                with:
-                  name: app
-                  path: app/build/outputs/apk/debug/app-debug.apk
-
       - name: Sharing on slack
         uses: rtCamp/action-slack-notify@v2.1.0
         env:
