@@ -24,16 +24,16 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assembleRelease
-      - name: Upload APK
-          uses: actions/upload-artifact@v1
-          with:
-            name: app
-            path: app/build/outputs/apk/debug/app-debug.apk
-              - name: Sharing on slack
-                  uses: rtCamp/action-slack-notify@v2.1.0
-                  env:
-                    # Your slack webhook GitHub secret
-                    SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-                    # Slack channel where you want to notify
-                    SLACK_CHANNEL: [ customer-apps-apk ]
-                    SLACK_USERNAME: "Kazi MD. Saidul"
+          - name: Upload APK
+                uses: actions/upload-artifact@v1
+                with:
+                  name: app
+                  path: app/build/outputs/apk/debug/app-debug.apk
+                    - name: Sharing on slack
+                        uses: rtCamp/action-slack-notify@v2.1.0
+                        env:
+                          # Your slack webhook GitHub secret
+                          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+                          # Slack channel where you want to notify
+                          SLACK_CHANNEL: [ customer-apps-apk ]
+                          SLACK_USERNAME: "Kazi MD. Saidul"
