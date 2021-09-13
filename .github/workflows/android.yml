@@ -30,9 +30,3 @@ jobs:
         with:
           name: app-release
           path: app/build/outputs/apk/release/
-      - name: Run Script
-        run: |
-          python --version
-          pip --version
-          pip install requests
-          python my_script.py "102297755" ${{secrets.CLIENT_ID}} ${{secrets.CLIENT_SECRET}} app/build/outputs/apk/release/app-release.apk
