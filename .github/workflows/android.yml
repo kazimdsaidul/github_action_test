@@ -20,11 +20,5 @@ jobs:
           gpg -d --passphrase "${{ secrets.KEYSTORE_PASSPHRASE }}" --batch mykeystore.jks.asc > app/mykeystore.jks
           echo "${{ secrets.KEYSTORE_PROPERTIES }}" > keystore.properties.asc
           gpg -d --passphrase "${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}" --batch keystore.properties.asc > keystore.properties
-          - name: Build debug APK
-              run: ./gradlew assemblerelease
-                - name: Upload APK
-                  uses: actions/upload-artifact@v1
-                  with:
-                    name: app
-                    path: app/build/outputs/apk/debug/app-debug.apk
+          
 
