@@ -31,7 +31,7 @@ android {
         }
         debug {
             storePassword keystoreProperties['storePassword']
-            storeFile file(keystoreProperties['storeFile'])
+            storeFile file('mykeystore.jks')
             keyPassword keystoreProperties['storePassword']
             keyAlias keystoreProperties['keyAlias']
         }
