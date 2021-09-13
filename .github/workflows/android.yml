@@ -17,13 +17,13 @@ jobs:
           java-version: 1.8
       - name: Prepare Secret Files
         run: |
-          echo "${{ secrets.KEYSTORE }}" > alvareztech.jks.asc
-          gpg -d --passphrase "${{ secrets.KEYSTORE_PASSPHRASE }}" --batch alvareztech.jks.asc > app/alvareztech.jks
-          echo "${{ secrets.KEYSTORE_PROPERTIES }}" > keystore.properties.asc
-          gpg -d --passphrase "${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}" --batch keystore.properties.asc > keystore.properties
-      - name: Build with Gradle
-        run: |
-          chmod +x gradlew
+#          echo "${{ secrets.KEYSTORE }}" > alvareztech.jks.asc
+#          gpg -d --passphrase "${{ secrets.KEYSTORE_PASSPHRASE }}" --batch alvareztech.jks.asc > app/alvareztech.jks
+#          echo "${{ secrets.KEYSTORE_PROPERTIES }}" > keystore.properties.asc
+#          gpg -d --passphrase "${{ secrets.KEYSTORE_PROPERTIES_PASSPHRASE }}" --batch keystore.properties.asc > keystore.properties
+#      - name: Build with Gradle
+#        run: |
+#          chmod +x gradlew
           ./gradlew assembleRelease
       - name: Publish APK
         uses: actions/upload-artifact@v2
